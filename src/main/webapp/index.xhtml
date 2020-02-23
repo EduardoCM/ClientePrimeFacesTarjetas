@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Tarjetas</title>
+</h:head>
+<h:body>
+	<br />
+	<p:growl id="msj" showDetail="true" />
+	<h:form id="frm">
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Titular" />
+			<p:inputText value="#{tarjetaBean.tarjeta.nombreTitular}" />
+
+			<p:outputLabel value="Entidad" />
+			<p:inputText value="#{tarjetaBean.tarjeta.nombreEntidad}" />
+
+			<p:outputLabel value="Numero Tarjeta" />
+			<p:inputText value="#{tarjetaBean.tarjeta.numeroTarjeta}" />
+
+			<p:outputLabel value="Marca" />
+			<p:inputText value="#{tarjetaBean.tarjeta.marca}" />
+
+			<p:outputLabel value="CVV" />
+			<p:inputText value="#{tarjetaBean.tarjeta.cvv}" />
+
+			<p:outputLabel value="Fecha cauducidad" />
+			<p:inputText value="#{tarjetaBean.tarjeta.fechaCaudicidad}" />
+
+			<p:commandButton value="Guardar"
+				actionListener="#{tarjetaBean.guardarTarjeta}" update="data" />
+			<p:commandButton value="Listar"
+				actionListener="#{tarjetaBean.listarTarjetas}" update="data" />
+		</p:panelGrid>
+
+		<p:dataTable id="data" value="#{tarjetaBean.lstTarjetas}"
+			var="tarjeta">
+
+			<p:column headerText="Titular">
+				<p:outputLabel value="#{tarjeta.nombreTitular}" />
+			</p:column>
+
+			<p:column headerText="Numero tarjeta">
+				<p:outputLabel value="#{tarjeta.numeroTarjeta}" />
+			</p:column>
+
+			<p:column headerText="Entidad">
+				<p:outputLabel value="#{tarjeta.nombreEntidad}" />
+			</p:column>
+
+			<p:column headerText="Marca">
+				<p:outputLabel value="#{tarjeta.marca}" />
+			</p:column>
+
+			<p:column headerText="CVV">
+				<p:outputLabel value="#{tarjeta.cvv}" />
+			</p:column>
+
+			<p:column headerText="Fecha Cauducidad">
+				<p:outputLabel value="#{tarjeta.fechaCaudicidad}" />
+			</p:column>
+
+
+			<p:column headerText="Eliminar">
+				<p:commandButton value="Eliminar" actionListener="#{tarjetaBean.eliminarId(tarjeta.numeroTarjeta)}" />
+			</p:column>
+
+
+		</p:dataTable>
+
+	</h:form>
+
+</h:body>
+</html>
+
